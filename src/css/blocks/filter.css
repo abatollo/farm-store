@@ -1,0 +1,65 @@
+.filter {
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+}
+
+.filter__heading {
+  margin-top: 4px;
+  margin-bottom: 4px;
+
+  font-size: 18px;
+}
+
+.filter__list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.filter__item {
+  display: block;
+}
+
+.filter__label {
+  display: flex;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 100%;
+
+  background-repeat: no-repeat;
+  background-image: url("../../assets/checkbox-unchecked.svg");
+  background-position: right center;
+
+  cursor: pointer;
+}
+
+.filter__checkbox:checked + .filter__label {
+  background-image: url("../../assets/checkbox-checked.svg");
+}
+
+/* .filter__checkbox::before {
+  display: flex;
+  width: 24px;
+  height: 24px;
+
+  background: #F7F7F7;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  content: "";
+}
+
+.filter__checkbox::after {
+  display: flex;
+  width: 24px;
+  height: 24px;
+
+  background: #FC9B27;
+
+  content: "";
+} */
