@@ -2,6 +2,8 @@ import { Filter } from "../filter/filter";
 import { Product } from "../product/product";
 import { Order } from "../order/order";
 
+import { products } from "../../mocks/products";
+
 const Shop = () => {
   return (
     <div className="shop">
@@ -11,8 +13,12 @@ const Shop = () => {
           <Order />
         </div>
         <main className="shop__list-wrapper">
-          <ul className="list-reset">
-            <Product />
+          <ul className="shop__list list-reset">
+            { 
+              products.map((product) => 
+                <Product product={product} key={product.id} />
+              )
+            }
           </ul>
         </main>
       </div>

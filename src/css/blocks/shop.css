@@ -22,3 +22,9 @@
 .shop__list-wrapper {
   grid-column: 2;
 }
+
+.shop__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

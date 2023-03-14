@@ -1,51 +1,54 @@
 import { useState } from "react";
 
-const Product = () => {
-  const [tab, setTab] = useState('description');
+const Product = ( { product } ) => {
+  const [tab, setTab] = useState( 'description' );
 
-  const onProductItemClick = (evt) => {
+  const onProductItemClick = ( evt ) => {
     setTab(evt.target.value);
   };
 
   return (
     <li className="product">
       <picture className="product__picture">
-        <img className="product__image" src="img/chicken-thigh-fillet.jpg" width="248" height="248" alt="" />
+        <img className="product__image" src={ `img/${ product.image }.jpg` } srcSet={`img/${ product.image }.jpg 1x, img/${ product.image }@2x.jpg 2x, img/${ product.image }@3x.jpg 3x, img/${ product.image }@4x.jpg 4x`} width="248" height="248" alt={ product.imageDescription } />
+        {/* @1x 248 на 248
+        @2x 496 на 496
+        @3x 744 на 744
+        @4x 992 на 992 */}
       </picture>
-      <h3 className="product__heading">Филе бедра цыплёнка</h3>
+      <h3 className="product__heading">{ product.name }</h3>
       <ul className="product__list list-reset">
         <li className="product__item">
-          <input className="product__item-radio visually-hidden" type="radio" name="product" id="product-description" value="description" onClick={onProductItemClick} />
-          <label className="product__item-label" htmlFor="product-description">Описание</label>
+          <input className="product__item-radio visually-hidden" type="radio" name="product" id={`${product.id}-product-description`} value="description" onClick={onProductItemClick} defaultChecked />
+          <label className="product__item-label" htmlFor={`${product.id}-product-description`}>Описание</label>
         </li>
         <li className="product__item">
-          <input className="product__item-radio visually-hidden" type="radio" name="product" id="product-specifications" value="specifications" onClick={onProductItemClick} />
-          <label className="product__item-label" htmlFor="product-specifications">Характеристики</label>
+          <input className="product__item-radio visually-hidden" type="radio" name="product" id={`${product.id}-product-specifications`} value="specifications" onClick={onProductItemClick} />
+          <label className="product__item-label" htmlFor={`${product.id}-product-specifications`}>Характеристики</label>
         </li>
         <li className="product__item">
-          <input className="product__item-radio visually-hidden" type="radio" name="product" id="product-properties" value="properties" onClick={onProductItemClick} />
-          <label className="product__item-label" htmlFor="product-properties">Свойства</label>
+          <input className="product__item-radio visually-hidden" type="radio" name="product" id={`${product.id}-product-properties`} value="properties" onClick={onProductItemClick} />
+          <label className="product__item-label" htmlFor={`${product.id}-product-properties`}>Свойства</label>
         </li>
       </ul>
       {tab === 'description' && 
         <>
-          <p className="product__description">Филе бедра без кожи и кости. Птица содержится в свободных птичниках, выращивается на натуральных зерновых кормах, что влияет положительно на вкус мяса. Филейная часть бедра обладает насыщенным вкусом и мясным ароматом.</p>
-          <div className="product__price">400 руб. / 700 гр.</div>
+          <p className="product__description">{ product.description.text }</p>
+          <div className="product__price">{ product.description.price } руб. / { product.specifications.weight } г</div>
         </>
       }
       {tab === 'specifications' && 
         <ul className="product__description list-reset">
-          <li><b>Масса:</b> 0,7 кг. (595-805 г.).</li>
-          <li><b>Срок годности:</b> 6 суток</li>
-          <li><b>Порода:</b> КОББ 500.</li>
-          <li><b>Срок годности:</b> 6 суток.</li>
-          <li><b>Место происхождения:</b> Тверская область</li>
+          <li><b>Масса:</b> { ( product.specifications.weight / 1000 ).toLocaleString('ru-RU') } кг ({ product.specifications.weightRangeFrom }—{ product.specifications.weightRangeTo } г)</li>
+          <li><b>Срок годности:</b> { product.specifications.shelfLife } суток</li>
+          { product.specifications.specimen && <li><b>Порода:</b> { product.specifications.specimen }</li> }
+          <li><b>Место происхождения:</b> { product.specifications.placeOfOrigin }</li>
         </ul>
       }
       {tab === 'properties' && 
         <ul className="product__description list-reset">
-          <li><b>Энергетическая ценность:</b> 135 ккал./565 кДж.</li>
-          <li><b>Пищевая ценность:</b> белки - 13,8 г., жиры - 8,7 г., углеводы - 0 г.; на 100 г.</li>
+          <li><b>Энергетическая ценность:</b> { product.properties.energyValue } ккал ({ Math.round( product.properties.energyValue * 4.1868 ) } кДж)</li>
+          <li><b>Пищевая ценность:</b> белки — { product.properties.nutritionalValue.protein.toLocaleString('ru-RU') } г, жиры — { product.properties.nutritionalValue.fats.toLocaleString('ru-RU') } г, углеводы — { product.properties.nutritionalValue.carbohydrates.toLocaleString('ru-RU') } г на 100 г</li>
         </ul>
       }
     </li>
