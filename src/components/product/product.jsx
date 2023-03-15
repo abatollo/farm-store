@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 const Product = ( { product } ) => {
-  const [tab, setTab] = useState( 'description' );
+  const [productItemOption, setProductItemOption] = useState( 'description' );
 
-  const onProductItemClick = ( evt ) => {
-    setTab(evt.target.value);
+  const handleProductItemOptionChange = ( changeEvent ) => {
+    setProductItemOption(changeEvent.target.value);
   };
 
   return (
@@ -17,27 +17,29 @@ const Product = ( { product } ) => {
         @4x 992 на 992 */}
       </picture>
       <h3 className="product__heading">{ product.name }</h3>
-      <ul className="product__list list-reset">
-        <li className="product__item">
-          <input className="product__item-radio visually-hidden" type="radio" name="product" id={`${product.id}-product-description`} value="description" onClick={onProductItemClick} defaultChecked />
-          <label className="product__item-label" htmlFor={`${product.id}-product-description`}>Описание</label>
-        </li>
-        <li className="product__item">
-          <input className="product__item-radio visually-hidden" type="radio" name="product" id={`${product.id}-product-specifications`} value="specifications" onClick={onProductItemClick} />
-          <label className="product__item-label" htmlFor={`${product.id}-product-specifications`}>Характеристики</label>
-        </li>
-        <li className="product__item">
-          <input className="product__item-radio visually-hidden" type="radio" name="product" id={`${product.id}-product-properties`} value="properties" onClick={onProductItemClick} />
-          <label className="product__item-label" htmlFor={`${product.id}-product-properties`}>Свойства</label>
-        </li>
-      </ul>
-      {tab === 'description' && 
+      <form>
+        <ul className="product__list list-reset">
+          <li className="product__item">
+            <input className="product__item-radio visually-hidden" type="radio" name="product" id={`${product.id}-product-description`} value="description" onChange={handleProductItemOptionChange} defaultChecked />
+            <label className="product__item-label" htmlFor={`${product.id}-product-description`}>Описание</label>
+          </li>
+          <li className="product__item">
+            <input className="product__item-radio visually-hidden" type="radio" name="product" id={`${product.id}-product-specifications`} value="specifications" onChange={handleProductItemOptionChange} />
+            <label className="product__item-label" htmlFor={`${product.id}-product-specifications`}>Характеристики</label>
+          </li>
+          <li className="product__item">
+            <input className="product__item-radio visually-hidden" type="radio" name="product" id={`${product.id}-product-properties`} value="properties" onChange={handleProductItemOptionChange} />
+            <label className="product__item-label" htmlFor={`${product.id}-product-properties`}>Свойства</label>
+          </li>
+        </ul>
+      </form>
+      {productItemOption === 'description' && 
         <>
           <p className="product__description">{ product.description.text }</p>
           <div className="product__price">{ product.description.price } руб. / { product.specifications.weight } г</div>
         </>
       }
-      {tab === 'specifications' && 
+      {productItemOption === 'specifications' && 
         <ul className="product__description list-reset">
           <li><b>Масса:</b> { ( product.specifications.weight / 1000 ).toLocaleString('ru-RU') } кг ({ product.specifications.weightRangeFrom }—{ product.specifications.weightRangeTo } г)</li>
           <li><b>Срок годности:</b> { product.specifications.shelfLife } суток</li>
@@ -45,7 +47,7 @@ const Product = ( { product } ) => {
           <li><b>Место происхождения:</b> { product.specifications.placeOfOrigin }</li>
         </ul>
       }
-      {tab === 'properties' && 
+      {productItemOption === 'properties' && 
         <ul className="product__description list-reset">
           <li><b>Энергетическая ценность:</b> { product.properties.energyValue } ккал ({ Math.round( product.properties.energyValue * 4.1868 ) } кДж)</li>
           <li><b>Пищевая ценность:</b> белки — { product.properties.nutritionalValue.protein.toLocaleString('ru-RU') } г, жиры — { product.properties.nutritionalValue.fats.toLocaleString('ru-RU') } г, углеводы — { product.properties.nutritionalValue.carbohydrates.toLocaleString('ru-RU') } г на 100 г</li>
