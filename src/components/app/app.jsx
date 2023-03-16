@@ -1,17 +1,20 @@
-import { Header } from "../header/header";
-// import { Hero } from "../hero/hero";
-// import { Features } from "../features/features";
-import { Footer } from "../footer/footer";
-import { Shop } from "../shop/shop";
+import { MainPage } from '../main-page/main-page';
+import { OrderPage } from '../order-page/order-page';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from 'react-router-dom';
 
 const App = () => {
   return (
     <>
-      <Header />
-      {/* <Hero />
-      <Features /> */}
-      <Shop />
-      <Footer />
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<MainPage />} />
+          <Route path="/order" element={<OrderPage />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

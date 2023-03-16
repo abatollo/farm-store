@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Features = () => {
   return (
     <section className="features container center">
@@ -28,9 +30,9 @@ const Features = () => {
           </ul>
         </li>
       </ul>
-      <a className="features__button button" href="/buy">
+      <Link className="features__button button" to="/order">
         Купить
-      </a>
+      </Link>
     </section>
   );
 };

@@ -23,46 +23,42 @@
 }
 
 .filter__item {
-  display: block;
+  display: flex;
 }
 
 .filter__label {
   display: flex;
+  justify-content: space-between;
   padding-top: 15px;
   padding-bottom: 15px;
   width: 100%;
 
-  background-repeat: no-repeat;
-  background-image: url("../../assets/checkbox-unchecked.svg");
-  background-position: right center;
-
   cursor: pointer;
 }
 
-.filter__checkbox:checked + .filter__label {
-  background-image: url("../../assets/checkbox-checked.svg");
-}
-
-/* .filter__label::before {
+.filter__label::after {
   display: flex;
   width: 24px;
   height: 24px;
 
-  background: #F7F7F7;
+  background-color: #F7F7F7;
   border: 1px solid rgba(0, 0, 0, 0.1);
 
   content: "";
 }
 
-.filter__checkbox:checked + .filter__label::before {
+.filter__checkbox:checked + .filter__label::after {
   display: flex;
   width: 24px;
   height: 24px;
 
-  background: #FC9B27;
+  background-color: #FC9B27;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../../assets/check.svg");
 
   content: "";
-} */
+}
 
 .filter__checkbox:focus + .filter__label {
   outline: medium auto Highlight;
