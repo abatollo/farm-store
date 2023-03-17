@@ -11,10 +11,6 @@ const Product = ( { product } ) => {
     <li className="product">
       <picture className="product__picture">
         <img className="product__image" src={ `img/${ product.image }.jpg` } srcSet={`img/${ product.image }.jpg 1x, img/${ product.image }@2x.jpg 2x, img/${ product.image }@3x.jpg 3x, img/${ product.image }@4x.jpg 4x`} width="248" height="248" alt={ product.imageDescription } />
-        {/* @1x 248 на 248
-        @2x 496 на 496
-        @3x 744 на 744
-        @4x 992 на 992 */}
       </picture>
       <h3 className="product__heading">{ product.name }</h3>
       <form>
