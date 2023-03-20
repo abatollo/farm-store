@@ -10,6 +10,8 @@ const Product = ( { product } ) => {
   return (
     <li className="product">
       <picture className="product__picture">
+        <source srcSet={`img/${ product.image }.avif 1x, img/${ product.image }@2x.avif 2x, img/${ product.image }@3x.avif 3x, img/${ product.image }@4x.avif 4x`} type="image/avif" />
+        <source srcSet={`img/${ product.image }.webp 1x, img/${ product.image }@2x.webp 2x, img/${ product.image }@3x.webp 3x, img/${ product.image }@4x.webp 4x`} type="image/webp" />
         <img className="product__image" src={ `img/${ product.image }.jpg` } srcSet={`img/${ product.image }.jpg 1x, img/${ product.image }@2x.jpg 2x, img/${ product.image }@3x.jpg 3x, img/${ product.image }@4x.jpg 4x`} width="248" height="248" alt={ product.imageDescription } />
       </picture>
       <h3 className="product__heading">{ product.name }</h3>

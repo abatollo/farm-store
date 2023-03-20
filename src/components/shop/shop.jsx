@@ -1,6 +1,6 @@
-import { Filter } from "../filter/filter";
+import Filter from "../filter/filter";
 import { Product } from "../product/product";
-import { Order } from "../order/order";
+import Order from "../order/order";
 
 import { products } from "../../mocks/products";
 
