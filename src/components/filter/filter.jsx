@@ -1,6 +1,6 @@
-import { products } from "../../mocks/products";
+import { products } from '../../mocks/products.json';
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 import { ActionCreator } from '../../store/action';
 

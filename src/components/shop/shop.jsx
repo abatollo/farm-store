@@ -1,8 +1,8 @@
-import Filter from "../filter/filter";
-import { Product } from "../product/product";
-import Order from "../order/order";
+import Filter from '../filter/filter';
+import { Product } from '../product/product';
+import Order from '../order/order';
 
-import { products } from "../../mocks/products";
+import { products } from '../../mocks/products';
 
 const Shop = () => {
   return (

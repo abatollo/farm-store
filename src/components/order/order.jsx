@@ -1,6 +1,6 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { formatPrice } from "../../utils/format-price";
+import { formatPrice } from '../../utils/format-price';
 
 const Order = ({ 
   overallCost 

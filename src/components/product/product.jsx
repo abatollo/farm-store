@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const Product = ( { product } ) => {
   const [productItemOption, setProductItemOption] = useState( 'description' );

@@ -62,14 +62,14 @@ button:active {
 }
 
 .button:hover {
-  background: #FC7427;
+  background-color: #FC7427;
   box-shadow: inset 0px 4px 0px rgba(0, 0, 0, 0.14);
 
   opacity: initial;
 }
 
 .button:active {
-  background: #FC7427;
+  background-color: #FC7427;
   box-shadow: none;
 
   opacity: initial;
