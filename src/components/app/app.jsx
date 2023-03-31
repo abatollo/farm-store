@@ -1,22 +1,8 @@
-import { MainPage } from '../main-page/main-page';
-import { OrderPage } from '../order-page/order-page';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom';
+import React from "react";
+import PageWrapper from "../layout/page-wrapper/page-wrapper";
+import features from "../../mocks/features";
+import "./style.css";
 
-const App = () => {
-  return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<MainPage />} />
-          <Route path="/order" element={<OrderPage />} />
-        </Routes>
-      </BrowserRouter>
-    </>
-  );
+export default function App() {
+  return <PageWrapper features={features} />;
 }
-
-export { App };
