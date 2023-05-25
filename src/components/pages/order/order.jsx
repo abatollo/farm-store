@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Panel from "../../ui/panel/panel";
 import Title, { TitleSize } from "../../ui/title/title";
 import ProductCart from "../../ui/product-cart/product-cart";
 import Button from "../../ui/button/button";
+import CheckboxList from "../../ui/checkbox-list/checkbox-list";
 import {
   LeftColumn,
   StyledOrder,
   AddressInput,
   PriceLabel,
   PriceValue,
-  ProductSwiper
+  ProductSwiper,
+  CheckboxLabel
 } from "./styles";
 import { SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination, Scrollbar } from "swiper";
@@ -18,6 +20,14 @@ import { Mousewheel, Pagination, Scrollbar } from "swiper";
 function Order({
   products // список продуктов
 }) {
+  const [swiperRef, setSwiperRef] = useState(null);
+  const [selectProductIds, setSelectProductIds] = useState([]);
+  const handleOnClickProduct = (value, index) => {
+    if (!selectProductIds.includes(value)) {
+      swiperRef.slideTo(index, 0);
+    }
+  };
+
   return (
     <StyledOrder as="form">
       <LeftColumn>
@@ -25,7 +35,18 @@ function Order({
           <Title as="h2" size={TitleSize.EXTRA_SMALL} marginBottom={12}>
             Выберите продукты
           </Title>
-          Чекбокс со списком продуктов
+          <CheckboxList
+            labelComponent={CheckboxLabel}
+            name={"select-products"}
+            isGridList={false}
+            options={products.map((product) => ({
+              value: product.id,
+              title: product.name
+            }))}
+            selectValues={selectProductIds}
+            onChange={setSelectProductIds}
+            onClickLabel={handleOnClickProduct}
+          />
         </Panel>
         <Panel>
           <Title size={TitleSize.EXTRA_SMALL} marginBottom={24}>
@@ -38,6 +59,15 @@ function Order({
         </Panel>
       </LeftColumn>
       <ProductSwiper
+        onSwiper={setSwiperRef}
+        spaceBetween={12}
+        direction="vertical"
+        slidesPerView="auto"
+        scrollbar={{ draggable: true }}
+        mousewheel
+        pagination={{
+          type: "fanction"
+        }}
         modules={[Mousewheel, Pagination, Scrollbar]}
       >
         {products.map((product) => (
