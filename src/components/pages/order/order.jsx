@@ -36,8 +36,16 @@ function Order({
       swiperRef.slideTo(index, 0);
     }
   };
-
-  return (
+  const [address, setAddress] = useState("");
+  const handleBuyClick = () => {
+    // eslint-disable-next-line no-alert
+    alert(`Спасибо за заказ, вы купили:\n${selectProducts.map(
+      (product) => `${product.name} - ${product.price} руб.\n`
+    )}
+    Итого: ${fullPrice} руб.
+    Доставка по адресу: ${address}.`);
+  };
+  return products && products.length ? (
     <StyledOrder as="form">
       <LeftColumn>
         <Panel marginBottom={20} paddingTop={24} paddingBottom={10}>
@@ -61,10 +69,20 @@ function Order({
           <Title size={TitleSize.EXTRA_SMALL} marginBottom={24}>
             Сделать заказ
           </Title>
-          <AddressInput placeholder="Введите адрес доставки" />
+          <AddressInput
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="Введите адрес доставки"
+          />
           <PriceLabel as="span">Цена</PriceLabel>
           <PriceValue value={fullPrice} />
-          <Button maxWidth>Купить</Button>
+          <Button
+            maxWidth
+            onClick={handleBuyClick}
+            disabled={!(selectProductIds.length && address)}
+          >
+            Купить
+          </Button>
         </Panel>
       </LeftColumn>
       <ProductSwiper
@@ -86,6 +104,8 @@ function Order({
         ))}
       </ProductSwiper>
     </StyledOrder>
+  ) : (
+    "Продукты были слишком вкусные и их разобрали."
   );
 }
 
