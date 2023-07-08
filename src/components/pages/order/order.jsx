@@ -14,7 +14,7 @@ import {
   CheckboxLabel
 } from "./styles";
 import { SwiperSlide } from "swiper/react";
-import { Mousewheel, Pagination, Scrollbar } from "swiper";
+import { Mousewheel, Pagination, Scrollbar } from "swiper/modules";
 
 // Оформление заказа
 function Order({
