@@ -2,7 +2,7 @@ import React from "react";
 import FeatureCard from "../../ui/feature-card/feature-card";
 import { Ul, Li } from "../../styled";
 import { Features, StyledButton, StyledTitle } from "./styles";
-import { AppRoute } from "../../const";
+import { AppRoute } from "../../../const";
 
 // список преимуществ
 function FeaturesList({
